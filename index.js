@@ -2,6 +2,7 @@
 const _ = require('lodash');
 const assert = require('assert');
 const readline = require('readline');
+const { chunk } = require('lodash');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -16,7 +17,6 @@ const getChunk = (arr, num) => {
   return _.chunk(arr, num);
 }
 getChunk(arrOfNums, 2);
-
 
 const getReverse = (arr) => {
   console.log(_.reverse(arr));
@@ -55,14 +55,16 @@ if (typeof describe === 'function'){
       let testArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       let chunkArray = getChunk(testArray, 2);
       assert.equal(chunkArray[0][0], 'a');
+      assert.equal(chunkArray[1][0], 'c');
     });
   });
 
   describe('getReverse', function() {
-    it('should reverse the order of the index in the array using _.reverse', function() {
+    it('should reverse the order of the values in the array using _.reverse', function() {
       let testArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       let reverseArray = getReverse(testArray);
-      assert.equal(reverseArray[0], 'h');
+      assert.equal(reverseArray[7], 'a');
+      assert.equal(testArray[0], 'h');
     });
   });
 
@@ -91,6 +93,7 @@ if (typeof describe === 'function'){
       let testArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       let tailArray = getTail(testArray);
       assert.equal(tailArray[0], 'b');
+      assert.equal(tailArray[6], 'h');
     });
   });
 }
